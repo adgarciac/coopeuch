@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-dark text-white">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/coopeuch/guardar}" th:object="${tarea}" method="post" >
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Descripci&oacute;n</label>
+						<div class="col-sm-6">
+							<input type="text"  class="form-control" name="descripcion"  th:value="${descripcion}" th:field="*{descripcion}"/> 
+						</div>
+					</div>
+
+					
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Fecha</label>
+						<div class="col-sm-6">
+							<input type="date" class="form-control"  name="fecha_creacion" th:value="${fecha_creacion}"  th:field="*{fecha_creacion}"/> 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Estado</label>
+						<div class="col-sm-6">
+							<select name="vigencia" id="vigencia" th:value="${vigencia}"  th:field="*{vigencia}" >
+							  <option value="1">Vigente</option>
+							  <option value="0">No Vigente</option>
+							</select>
+							
+						</div>
+					</div>
+					<input type="hidden" name="id" class="form-control"  th:field="*{id}"/>
+					
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Modificar Tarea" class="btn btn-secondary" />
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
